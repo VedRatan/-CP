@@ -1,37 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-int check(int m,int a,int b)
+const int M = 5e5 + 5;
+vector<vector<int>> divs(M);
+void pre()
 {
-    if(((m%a)%b)==((m%b)%a))
-    return 1;
-    else return 0;
+    for (int i = 1; i < M; i++)
+    {
+        for (int j = i; j < M; j += i)
+            divs[j].push_back(i);
+    }
 }
 int main()
 {
-    int t,n,m;
-    cin>>t;
-    int c=2, i=1, pairs=0, k;
-    while(t--)
+    pre();
+    int t;
+    cin >> t;
+    while (t--)
     {
-        cin>>n>>m;
-        k=(n*(n-1))/2;
-        // if(n>m)
-        // cout<<k<<endl;
-        // else
-        while(k--)
+        int n, m, b;
+        cin >> n >> m;
+        long long int res = 0;
+        for (b = 2; b <= n; b++)
         {
-        if(c>n)
-        {
-            i+=1;
-            c=i+1;
+            int x = m - (m % b);
+            if (x > 0)
+                res += lower_bound(divs[x].begin(), divs[x].end(), b) - divs[x].begin();
+            else
+                res += b - 1;
         }
-        if(check(m,i,c)==1) pairs++;
-        c++;
-        }
-        cout<<pairs<<endl;
-        i=1;
-        c=2;
-        pairs=0;   
+        cout << res << endl;
     }
     return 0;
 }
