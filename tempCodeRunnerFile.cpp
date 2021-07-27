@@ -1,2 +1,4 @@
- else
-    cout<<"NO"<<endl;
+
+            cout << "Oh, my keyboard!" << endl;
+    }
+};
