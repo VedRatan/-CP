@@ -1,4 +1,1 @@
-
-            cout << "Oh, my keyboard!" << endl;
-    }
-};
+second
