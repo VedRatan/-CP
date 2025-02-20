@@ -1,0 +1,36 @@
+apiVersion: kyverno.io/v2beta1
+kind: PolicyException
+metadata:
+  labels:
+    cleanup.kyverno.io/ttl: 2025-02-27T064941Z
+  name: policy-exc-req-u9521x1496y-0
+  namespace: kyverno
+spec:
+  exceptions:
+  - policyName: restrict-automount-sa-token
+    ruleNames:
+    - validate-automountServiceAccountToken
+    - autogen-validate-automountServiceAccountToken
+  match:
+    any:
+    - resources:
+        kinds:
+        - Pod
+        names:
+        - local-path-provisioner-58cc7856b6-4vxrr
+        namespaces:
+        - local-path-storage
+    - resources:
+        kinds:
+        - Deployment
+        names:
+        - local-path-provisioner
+        namespaces:
+        - local-path-storage
+    - resources:
+        kinds:
+        - ReplicaSet
+        names:
+        - local-path-provisioner-58cc7856b6
+        namespaces:
+        - local-path-storage
